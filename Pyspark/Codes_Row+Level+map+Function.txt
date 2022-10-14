@@ -1,0 +1,45 @@
+--Files used in this Chapter:
+orders
+ordItems
+
+Please download the orders and ordItems files from Section 2 (Resources).
+
+--Load the Files
+ord = sc.textFile('practice/retail_db/orders')
+ordItems = sc.textFile('practice/retail_db/order_items')
+
+--Map Function
+##### Practice -1
+PS: Project all the Order_ids.
+ordMap = ord.map(lambda x : x.split(',')[0])
+for i in ordMap.take(5) : print(i)
+ 
+##### Practice -2
+PS: Project all the Orders and their status.
+ord.map(lambda x : (x.split(',')[0],x.split(',')[3])).take(5)
+
+### Practice -3
+PS: Combine Order id and status with '#'
+ord.map(lambda x : x.split(',')[0] + '#' + x.split(',')[3]).take(5)
+
+### Practice -4
+PS: Convert the Order date into YYYY/MM/DD Format.
+ord.map(lambda x : x.split(',')[1].split(' ')[0].replace('-','/')).first()
+
+### Practice -5
+PS: Create key-value pairs with key as Order id and values as whole records.
+ordMap = ord.map(lambda x : (x.split(',')[0],x))
+ordMap.take(5)
+
+### Practice -6 
+PS: Project all the Order_item_ids and their subtotal.
+ordItemsMap = ordItems.map(lambda x : (x.split(',')[0],x.split(',')[4]))
+ordItemsMap.take(5)
+
+### Practice -7
+PS: Applied user defined function to convert status into lowercase.
+def lowerCase(str):
+    return str.lower()   
+ord.map(lambda x : lowerCase(x.split(',')[3])).first()
+
+###### END ############

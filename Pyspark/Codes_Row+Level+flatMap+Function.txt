@@ -1,0 +1,15 @@
+--Files used in this Chapter:
+orders
+
+Please download the orders  files from Section 2 (Resources).
+
+--Load the Files
+ord = sc.textFile('practice/retail_db/orders')
+
+--flatMap Function
+##### Practice -1
+### PS : Word count in orders file.
+wordCount = ord.flatMap(lambda x : x.split(',')).map(lambda w : (w,1)).reduceByKey(lambda x,y : x+y)
+for i in wordCount.take(20) : print(i)
+
+###### END ############

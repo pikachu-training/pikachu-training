@@ -1,0 +1,15 @@
+--Files used in this Chapter:
+orders
+
+Please download the orders  files from Section 2 (Resources).
+
+--Load the Files
+ord = sc.textFile('practice/retail_db/orders')
+
+--filter Function
+##### Practice -1
+PS: Print all the orders which are closed or Complete and ordered in the year 2013.
+filteredOrd = ord.filter(lambda x : (x.split(',')[3] in ("CLOSED","COMPLETE"))  and (x.split(',')[1].split('-')[0] == '2014'))
+filteredOrd.take(5)
+
+###### END ############
